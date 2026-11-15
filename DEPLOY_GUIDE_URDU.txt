@@ -1,0 +1,69 @@
+APEX INTELLIGENCE - ASAL WEBSITE BANANE KA GUIDE (FREE)
+=========================================================
+Pehle apne computer par (localhost:3000) sab test kar lein. Phir online karein.
+
+Aap ko 3 free accounts chahiye:  GitHub  +  Supabase (database)  +  Render (hosting)
+
+------------------------------------------------------------
+STEP 1: Supabase (users ka data yahan mehfooz hoga)
+------------------------------------------------------------
+1. supabase.com par jayein, free account banayein, "New project" banayein.
+   (Database password koi bhi mazboot likh dein aur kahin save kar lein.)
+2. Project tayyar ho jaye to left menu mein "SQL Editor" > "New query".
+3. Is folder ki file  supabase.sql  kholen, poora text copy karein, wahan paste karein, "Run" dabayein.
+   "Success" aana chahiye.
+4. Left menu mein  Project Settings > API  kholen. Wahan se 2 cheezein copy karein:
+      - Project URL            (https://xxxx.supabase.co)
+      - service_role key       ("Reveal" dabayein)  <-- YEH SECRET HAI, kisi ko na dikhayein.
+
+------------------------------------------------------------
+STEP 2: GitHub (code upload)
+------------------------------------------------------------
+1. github.com par account banayein > "New repository" > naam: apex-intelligence > "Private" chunen > Create.
+2. "uploading an existing file" par click karein.
+3. Is folder ki files drag kar ke upload karein:
+      server.js, store.js, index.html, package.json, render.yaml, supabase.sql, .gitignore
+   YEH UPLOAD NA KAREN:  .env  aur  data  folder  (in mein aap ki keys hoti hain)
+4. "Commit changes" dabayein.
+
+------------------------------------------------------------
+STEP 3: Render (website online)
+------------------------------------------------------------
+1. render.com par GitHub se sign in karein.
+2. "New +" > "Blueprint" > apna apex-intelligence repository chunen > Connect.
+   (Render render.yaml khud padh leta hai.)
+3. Woh poochega ke in values ko bharein:
+      ADMIN_EMAIL          = aap ki email (jis se aap admin banenge)
+      ADMIN_SETUP_CODE     = koi khufia code (jaise: MeraCode-84721). Yaad rakhein.
+      SUPABASE_URL         = Step 1 wala Project URL
+      SUPABASE_SERVICE_KEY = Step 1 wali service_role key
+      OPENAI_API_KEY       = aap ki NAYI OpenAI key
+      (Claude/Gemini/Groq ki key ho to wo bhi, warna khali chor dein)
+4. "Apply" dabayein. 3-5 minute mein deploy ho jayega.
+5. Render aap ko address dega, jaise  https://apex-intelligence.onrender.com
+
+------------------------------------------------------------
+STEP 4: Pehla login (BAHOT ZAROORI - sab se pehle khud karein)
+------------------------------------------------------------
+1. Apna Render address kholen.
+2. "Create account" mein wohi email likhein jo ADMIN_EMAIL mein dali thi, password rakhein,
+   aur "Invite / setup code" mein ADMIN_SETUP_CODE likhein.
+3. Aap admin ban jayenge. Ab doosre log normal signup kar sakte hain (unhein code ki zaroorat nahi).
+4. Admin Dashboard > Accounts mein tamam users nazar aayenge, aap kisi ko Disable bhi kar sakte hain.
+
+------------------------------------------------------------
+KHARCH AUR HIFAZAT
+------------------------------------------------------------
+- Har normal user ko roz DAILY_MESSAGE_LIMIT (default 30) messages milte hain. Is se aap ka API bill control mein rehta hai.
+  Admin unlimited hai. Limit badalni ho to Render > Environment mein DAILY_MESSAGE_LIMIT badal dein.
+- OpenAI dashboard mein "Usage limits" / monthly budget zaroor laga dein.
+- Free Render 15 minute khali rehne par so jata hai; pehla page khulne mein ~1 minute lagta hai.
+  Hamesha chalta rakhna ho to Render ka paid plan le lein (code wohi rahega).
+- Free Supabase project kuch din koi istemal na kare to "pause" ho sakta hai; Supabase dashboard se "Restore" kar dein.
+- Apni keys Render ke Environment section mein hi rakhein, GitHub ya chat mein kabhi nahi.
+
+ABHI SHAMIL NAHI (baad mein add ho sakta hai)
+- Email verification aur "password bhool gaya" (reset by email)
+- Payments / subscription plans
+- Projects, agents aur workflows abhi har browser mein save hote hain (server par per-user save nahi)
+- Terms of Service / Privacy Policy pages (asli users ke liye zaroori hain)

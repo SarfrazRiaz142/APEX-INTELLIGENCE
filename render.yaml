@@ -1,0 +1,39 @@
+# Render Blueprint: Render reads this file when you deploy from GitHub.
+services:
+  - type: web
+    name: apex-intelligence
+    runtime: node
+    plan: free
+    buildCommand: echo "no build needed"
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: TRUST_PROXY
+        value: "1"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: SIGNUP_MODE
+        value: open
+      - key: DAILY_MESSAGE_LIMIT
+        value: "30"
+      - key: DEFAULT_PROVIDER
+        value: openai
+      # You fill these in on the Render dashboard (never put real values in this file):
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_SETUP_CODE
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
